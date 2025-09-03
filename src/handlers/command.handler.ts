@@ -21,21 +21,25 @@ export class CommandHandler {
     const user = ctx.from;
     if (!user) return;
 
-    const welcomeMessage = 
-      '🌟 **Welcome to Sentient AI Bot\\!**\n\n' +
-      'I\'m Dobby, your AI assistant powered by advanced language models\\.\n\n' +
-      '**What I can do:**\n' +
+    const welcomeText = 
+      '🤖 Welcome to Dobby AI!\n\n' +
+      'I\'m Dobby, your advanced AI assistant powered by Sentient Foundation.\n\n' +
+      '🧠 Two Powerful Models Available:\n' +
+      '• Dobby 70B - Full 70B parameter model for complex reasoning\n' +
+      '• Dobby Mini - Lightweight 1.8B model for fast responses\n\n' +
+      '✨ What I can do:\n' +
       '• Answer questions and engage in conversations\n' +
-      '• Support multiple AI models (70B and Mini)\n' +
+      '• Support freedom, cryptocurrencies, and decentralization\n' +
       '• Remember conversation context\n' +
-      '• Provide formatted responses\n\n' +
-      '**Commands:**\n' +
-      '• /help - show this help message\n' +
-      '• /chat - start a conversation\n' +
-      '• /models - choose AI model\n' +
-      '• /status - show current settings\n' +
-      '• /clear - clear conversation history\n\n' +
-      'Just send me a message to start chatting\\! 🚀';
+      '• Provide honest and direct responses\n\n' +
+      '🚀 Quick Commands:\n' +
+      '• /models - choose between Dobby 70B or Mini\n' +
+      '• /help - show all available commands\n' +
+      '• /clear - reset conversation history\n\n' +
+      'Just send me a message to start chatting!\n\n' +
+      'Powered by Sentient Foundation 🧠✨';
+
+    const welcomeMessage = escapeMarkdown(welcomeText);
 
     await ctx.reply(welcomeMessage, { parse_mode: 'MarkdownV2' });
   }
@@ -51,7 +55,6 @@ export class CommandHandler {
       '• /help - this help message\n' +
       '• /chat - start a new conversation\n' +
       '• /clear - clear conversation history\n' +
-      '• /status - show current AI model and settings\n' +
       '• /models - view and select AI models\n' +
       '• /model <name> - change AI model via command\n\n' +
       '**Usage:**\n' +
@@ -73,7 +76,7 @@ export class CommandHandler {
       'I\'m ready to chat with you\\! Send me any message and I\'ll respond using your selected AI model\\.\n\n' +
       '**Current AI Model:** ' + 
       escapeMarkdown(this.userPreferencesService.getUserModel(ctx.from?.id || 0)) + '\n\n' +
-      '**Tip:** Use /models to change your AI model or /status to see current settings\\.';
+      '**Tip:** Use /models to change your AI model\\.';
 
     await ctx.reply(chatMessage, { parse_mode: 'MarkdownV2' });
   }
